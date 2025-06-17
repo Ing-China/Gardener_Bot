@@ -1,0 +1,48 @@
+import TelegramBot from "node-telegram-bot-api";
+import cron from "node-cron";
+import dotenv from "dotenv";
+import moment from "moment";
+import { getTodayGroup, getGroupMembers } from "./schedule.js";
+
+dotenv.config();
+
+const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+const chatId = process.env.TELEGRAM_CHAT_ID;
+
+function sendReminder(type) {
+  const now = moment();
+  const groupKey = getTodayGroup(now);
+
+  if (!groupKey) {
+    console.log(
+      `${now.format("YYYY-MM-DD")} is a holiday or Sunday. No reminder.`
+    );
+    return;
+  }
+
+  const members = getGroupMembers(groupKey)
+    .map((u) => `@${u}`)
+    .join(" ");
+  const timeLabel =
+    type === "morning" ? "🌞 Morning Reminder" : "🌇 Evening Check-in";
+
+  const message = `${timeLabel}\n\nToday is Group ${groupKey}'s turn to care for the garden.\n${members} 🌱`;
+
+  // Send message WITHOUT parse_mode so Telegram auto-links @usernames
+  bot.sendMessage(chatId, message);
+
+  console.log(
+    `✅ Sent ${type} reminder to Group ${groupKey} at ${now.format("HH:mm")}`
+  );
+}
+
+// Schedule reminders
+cron.schedule("25 8 * * *", () => sendReminder("morning")); // 8:25 AM
+cron.schedule("35 16 * * *", () => sendReminder("evening")); // 4:35 PM
+
+console.log("🤖 Gardener Bot is running...");
+bot.on("message", (msg) => {
+  console.log("🟢 Received message");
+  console.log("Chat ID:", msg.chat.id);
+});
+sendReminder("evening");
