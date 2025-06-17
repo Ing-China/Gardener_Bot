@@ -1,0 +1,5 @@
+# Node modules folder (do not push dependencies)
+node_modules/
+
+# Environment variables file (stores your secrets)
+.env
