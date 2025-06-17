@@ -1,5 +1,5 @@
 export const GROUPS = {
-  A: ["@UngVanly", "@Ing_China"],
-  B: ["@userB1", "@userB2"],
-  C: ["UngVanly", "Ing_China", "Pa_Chantha", "tep_rithy", "HE_Sovanthai"],
+  TEAM1: ["Ing_China", "rann_dxrn", "ThonSotheavann", "sambath_sopha"],
+  TEAM2: ["@userB1", "@userB2"],
+  TEAM3: ["dachdalin07", "Kristar03", "UngVanly", "tep_rithy", "HE_Sovanthai"],
 };

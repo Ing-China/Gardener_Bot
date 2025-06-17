@@ -13,11 +13,11 @@ export function getTodayGroup(date = moment()) {
   }
 
   const index = getRotationIndex(date);
-  return ["A", "B", "C"][index % 3];
+  return ["TEAM1", "TEAM2", "TEAM3"][index % 3];
 }
 
 function getRotationIndex(date) {
-  const startDate = moment("2024-01-01");
+  const startDate = moment("2025-06-17");
   let count = 0;
 
   for (let d = startDate.clone(); d.isSameOrBefore(date); d.add(1, "day")) {
