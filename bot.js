@@ -6,7 +6,7 @@ import { getTodayGroup, getGroupMembers } from "./schedule.js";
 
 dotenv.config();
 
-const bot = new TelegramBot(process.env.BOT_TOKEN);
+const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 const chatId = process.env.TELEGRAM_CHAT_ID;
 
 function sendReminder(type) {
@@ -37,12 +37,15 @@ function sendReminder(type) {
 }
 
 // Schedule reminders
-cron.schedule("18 8 * * *", () => sendReminder("evening"));
-cron.schedule("20 8 * * *", () => sendReminder("evening"));
-cron.schedule("21 8 * * *", () => sendReminder("evening"));
+cron.schedule("25 8 * * *", () => sendReminder("evening"));
+cron.schedule("26 8 * * *", () => sendReminder("evening"));
+cron.schedule("27 8 * * *", () => sendReminder("evening"));
 
 console.log("🤖 Gardener Bot is running...");
+
 bot.on("message", (msg) => {
   console.log("🟢 Received message");
   console.log("Chat ID:", msg.chat.id);
 });
+
+sendReminder("evening");
