@@ -6,7 +6,18 @@ import { getTodayGroup, getGroupMembers } from "./schedule.js";
 
 dotenv.config();
 
-const bot = new TelegramBot(process.env.BOT_TOKEN);
+// const bot = new TelegramBot(process.env.BOT_TOKEN);
+const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: false });
+
+bot
+  .getMe()
+  .then((me) => {
+    console.log("✅ Bot is working. Bot username:", me.username);
+  })
+  .catch((err) => {
+    console.error("❌ Bot token is invalid:", err.message);
+  });
+
 const chatId = process.env.TELEGRAM_CHAT_ID;
 
 function sendReminder(type) {
@@ -54,4 +65,4 @@ bot.on("message", (msg) => {
   console.log("Chat ID:", msg.chat.id);
 });
 
-sendReminder("evening");
+// sendReminder("evening");
