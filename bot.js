@@ -45,4 +45,3 @@ bot.on("message", (msg) => {
   console.log("🟢 Received message");
   console.log("Chat ID:", msg.chat.id);
 });
-sendReminder("evening");
