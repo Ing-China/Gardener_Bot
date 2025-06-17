@@ -20,6 +20,14 @@ bot
 
 const chatId = process.env.TELEGRAM_CHAT_ID;
 
+const natureQuotes = [
+  "“The earth laughs in flowers.” – Ralph Waldo Emerson",
+  "“In every walk with nature, one receives far more than he seeks.” – John Muir",
+  "“Look deep into nature, and then you will understand everything better.” – Albert Einstein",
+  "“Adopt the pace of nature: her secret is patience.” – Ralph Waldo Emerson",
+  "“To plant a garden is to believe in tomorrow.” – Audrey Hepburn",
+];
+
 function sendReminder(type) {
   const now = moment();
   const groupKey = getTodayGroup(now);
@@ -33,36 +41,51 @@ function sendReminder(type) {
 
   const members = getGroupMembers(groupKey)
     .map((u) => `@${u}`)
-    .join(" ");
+    .join("\n");
+
   const timeLabel =
     type === "morning" ? "🌞 Morning Reminder" : "🌇 Evening Check-in";
+  const quote = natureQuotes[Math.floor(Math.random() * natureQuotes.length)];
 
-  const message = `${timeLabel}\n\nToday is Group ${groupKey}'s turn to care for the garden.\n${members} 🌱`;
+  const message = `${timeLabel}
 
-  // Send message WITHOUT parse_mode so Telegram auto-links @usernames
-  bot.sendMessage(chatId, message);
+🪴 Group ${groupKey} is responsible for garden care today.
 
-  console.log(
-    `✅ Sent ${type} reminder to Group ${groupKey} at ${now.format("HH:mm")}`
-  );
+👥 Members:
+${members}
+
+🌿 ${quote}`;
+
+  bot
+    .sendMessage(chatId, message)
+    .then(() => {
+      console.log(
+        `✅ Sent ${type} reminder to Group ${groupKey} at ${now.format(
+          "HH:mm"
+        )}`
+      );
+    })
+    .catch((error) => {
+      console.error("❌ Failed to send message:", error.message);
+    });
 }
 
 // Schedule reminders
-cron.schedule("41 8 * * *", () => sendReminder("evening"));
-cron.schedule("42 8 * * *", () => sendReminder("evening"));
-cron.schedule("43 8 * * *", () => sendReminder("evening"));
-cron.schedule("44 8 * * *", () => sendReminder("evening"));
-cron.schedule("45 8 * * *", () => sendReminder("evening"));
-cron.schedule("46 8 * * *", () => sendReminder("evening"));
-cron.schedule("47 8 * * *", () => sendReminder("evening"));
-cron.schedule("48 8 * * *", () => sendReminder("evening"));
-cron.schedule("50 8 * * *", () => sendReminder("evening"));
+// ✅ Morning at 8:25 AM
+cron.schedule("25 8 * * *", () => sendReminder("morning"));
+
+// ✅ Evening at 4:35 PM
+cron.schedule("35 16 * * *", () => sendReminder("evening"));
+
+cron.schedule("57 8 * * *", () => sendReminder("evening"));
+cron.schedule("58 8 * * *", () => sendReminder("evening"));
+cron.schedule("59 8 * * *", () => sendReminder("evening"));
 
 console.log("🤖 Gardener Bot is running...");
 
+// Optional: Show chat ID when someone messages the bot
 bot.on("message", (msg) => {
-  console.log("🟢 Message received from chat");
-  console.log("Chat ID:", msg.chat.id);
+  console.log("🟢 Received message from chat ID:", msg.chat.id);
 });
 
-sendReminder("evening");
+// sendReminder("evening");
