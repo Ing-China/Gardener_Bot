@@ -51,10 +51,10 @@ function sendReminder(type) {
 
 🪴 Group ${groupKey} is responsible for garden care today.
 
-  👥 Members:
-  ${members}
+👥 Members:
+${members}
 
-  🌿 ${quote}`;
+🌿 ${quote}`;
 
   bot
     .sendMessage(chatId, message)
@@ -71,17 +71,15 @@ function sendReminder(type) {
 }
 
 // Schedule reminders
-// ✅ Morning at 8:25 AM
 cron.schedule("25 8 * * *", () => sendReminder("morning"));
 
-// ✅ Evening at 4:35 PM
-cron.schedule("35 16 * * *", () => sendReminder("evening"));
+cron.schedule("52 16 * * *", () => sendReminder("evening"));
 
 console.log("🤖 Gardener Bot is running...");
 
 // Optional: Show chat ID when someone messages the bot
 bot.on("message", (msg) => {
-  console.log("🟢 Received message from chat ID:", msg.chat.id);
+  console.log("🟢 Message received from chat");
+  console.log("Chat ID:", msg.chat.id);
 });
-
-// sendReminder("evening");
+sendReminder("evening");
