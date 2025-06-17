@@ -73,7 +73,7 @@ ${members}
 // Schedule reminders
 cron.schedule("25 8 * * *", () => sendReminder("morning"));
 
-cron.schedule("52 16 * * *", () => sendReminder("evening"));
+cron.schedule("05 17 * * *", () => sendReminder("evening"));
 
 console.log("🤖 Gardener Bot is running...");
 
@@ -82,4 +82,4 @@ bot.on("message", (msg) => {
   console.log("🟢 Message received from chat");
   console.log("Chat ID:", msg.chat.id);
 });
-sendReminder("evening");
+// sendReminder("evening");
