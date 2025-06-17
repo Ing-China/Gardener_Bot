@@ -7,7 +7,7 @@ import { getTodayGroup, getGroupMembers } from "./schedule.js";
 dotenv.config();
 
 // const bot = new TelegramBot(process.env.BOT_TOKEN);
-const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: false });
+const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
 bot
   .getMe()
@@ -48,21 +48,21 @@ function sendReminder(type) {
 }
 
 // Schedule reminders
-cron.schedule("31 8 * * *", () => sendReminder("evening"));
-cron.schedule("32 8 * * *", () => sendReminder("evening"));
-cron.schedule("33 8 * * *", () => sendReminder("evening"));
-cron.schedule("34 8 * * *", () => sendReminder("evening"));
-cron.schedule("35 8 * * *", () => sendReminder("evening"));
-cron.schedule("36 8 * * *", () => sendReminder("evening"));
-cron.schedule("37 8 * * *", () => sendReminder("evening"));
-cron.schedule("38 8 * * *", () => sendReminder("evening"));
-cron.schedule("40 8 * * *", () => sendReminder("evening"));
+cron.schedule("41 8 * * *", () => sendReminder("evening"));
+cron.schedule("42 8 * * *", () => sendReminder("evening"));
+cron.schedule("43 8 * * *", () => sendReminder("evening"));
+cron.schedule("44 8 * * *", () => sendReminder("evening"));
+cron.schedule("45 8 * * *", () => sendReminder("evening"));
+cron.schedule("46 8 * * *", () => sendReminder("evening"));
+cron.schedule("47 8 * * *", () => sendReminder("evening"));
+cron.schedule("48 8 * * *", () => sendReminder("evening"));
+cron.schedule("50 8 * * *", () => sendReminder("evening"));
 
 console.log("🤖 Gardener Bot is running...");
 
 bot.on("message", (msg) => {
-  console.log("🟢 Received message");
+  console.log("🟢 Message received from chat");
   console.log("Chat ID:", msg.chat.id);
 });
 
-// sendReminder("evening");
+sendReminder("evening");
