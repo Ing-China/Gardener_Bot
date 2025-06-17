@@ -37,12 +37,11 @@ function sendReminder(type) {
 }
 
 // Schedule reminders
-cron.schedule("25 8 * * *", () => sendReminder("morning")); // 8:25 AM
-cron.schedule("35 16 * * *", () => sendReminder("evening")); // 4:35 PM
+cron.schedule("35 14 * * *", () => sendReminder("evening")); // 2:35 PM
+cron.schedule("37 14 * * *", () => sendReminder("evening")); // 2:37 PM
 
 console.log("🤖 Gardener Bot is running...");
 bot.on("message", (msg) => {
   console.log("🟢 Received message");
   console.log("Chat ID:", msg.chat.id);
 });
-sendReminder("evening");
