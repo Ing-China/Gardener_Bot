@@ -37,9 +37,15 @@ function sendReminder(type) {
 }
 
 // Schedule reminders
-cron.schedule("27 8 * * *", () => sendReminder("evening"));
-cron.schedule("28 8 * * *", () => sendReminder("evening"));
-cron.schedule("29 8 * * *", () => sendReminder("evening"));
+cron.schedule("31 8 * * *", () => sendReminder("evening"));
+cron.schedule("32 8 * * *", () => sendReminder("evening"));
+cron.schedule("33 8 * * *", () => sendReminder("evening"));
+cron.schedule("34 8 * * *", () => sendReminder("evening"));
+cron.schedule("35 8 * * *", () => sendReminder("evening"));
+cron.schedule("36 8 * * *", () => sendReminder("evening"));
+cron.schedule("37 8 * * *", () => sendReminder("evening"));
+cron.schedule("38 8 * * *", () => sendReminder("evening"));
+cron.schedule("40 8 * * *", () => sendReminder("evening"));
 
 console.log("🤖 Gardener Bot is running...");
 
