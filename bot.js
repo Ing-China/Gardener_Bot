@@ -37,8 +37,9 @@ function sendReminder(type) {
 }
 
 // Schedule reminders
-cron.schedule("25 8 * * *", () => sendReminder("morning")); // 8:25 AM
-cron.schedule("35 16 * * *", () => sendReminder("evening")); // 4:35 PM
+cron.schedule("18 8 * * *", () => sendReminder("evening"));
+cron.schedule("20 8 * * *", () => sendReminder("evening"));
+cron.schedule("21 8 * * *", () => sendReminder("evening"));
 
 console.log("🤖 Gardener Bot is running...");
 bot.on("message", (msg) => {
