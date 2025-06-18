@@ -44,7 +44,7 @@ function sendReminder(type) {
     return;
   }
 
-  const members = getGroupMembers()
+  const members = getGroupMembers(groupKey)
     .map((u) => `@${u}`)
     .join("\n");
 
@@ -80,7 +80,7 @@ cron.schedule("15 8 * * *", () => sendReminder("morning"));
 
 cron.schedule("15 16 * * *", () => sendReminder("evening"));
 
-// cron.schedule("30 10 * * *", () => sendReminder("morning"));
+// cron.schedule("46 10 * * *", () => sendReminder("morning"));
 
 console.log("🤖 Gardener Bot is running...");
 
