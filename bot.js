@@ -21,11 +21,16 @@ bot
 const chatId = process.env.TELEGRAM_CHAT_ID;
 
 const natureQuotes = [
-  "“The earth laughs in flowers.” – Ralph Waldo Emerson",
-  "“In every walk with nature, one receives far more than he seeks.” – John Muir",
-  "“Look deep into nature, and then you will understand everything better.” – Albert Einstein",
-  "“Adopt the pace of nature: her secret is patience.” – Ralph Waldo Emerson",
-  "“To plant a garden is to believe in tomorrow.” – Audrey Hepburn",
+  "“Nature does not hurry, yet everything is accomplished.” – Lao Tzu",
+  "“The mountains are calling and I must go.” – John Muir",
+  "“Heaven is under our feet as well as over our heads.” – Henry David Thoreau",
+  "“Live in each season as it passes; breathe the air, drink the drink, taste the fruit.” – Henry David Thoreau",
+  "“Colors are the smiles of nature.” – Leigh Hunt",
+  "“The clearest way into the Universe is through a forest wilderness.” – John Muir",
+  "“Nature always wears the colors of the spirit.” – Ralph Waldo Emerson",
+  "“Just living is not enough… one must have sunshine, freedom, and a little flower.” – Hans Christian Andersen",
+  "“The poetry of the earth is never dead.” – John Keats",
+  "“There’s a whole world out there, right outside your window.” – Charlotte Eriksson",
 ];
 
 function sendReminder(type) {
@@ -39,7 +44,7 @@ function sendReminder(type) {
     return;
   }
 
-  const members = getGroupMembers(groupKey)
+  const members = getGroupMembers()
     .map((u) => `@${u}`)
     .join("\n");
 
@@ -71,9 +76,11 @@ ${members}
 }
 
 // Schedule reminders
-cron.schedule("25 8 * * *", () => sendReminder("morning"));
+cron.schedule("15 8 * * *", () => sendReminder("morning"));
 
-cron.schedule("05 17 * * *", () => sendReminder("evening"));
+cron.schedule("15 16 * * *", () => sendReminder("evening"));
+
+// cron.schedule("30 10 * * *", () => sendReminder("morning"));
 
 console.log("🤖 Gardener Bot is running...");
 
