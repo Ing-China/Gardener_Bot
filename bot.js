@@ -102,7 +102,7 @@ ${members}
 }
 
 // Schedule reminders
-cron.schedule("40 8 * * *", () => sendReminder("morning"));
+cron.schedule("46 8 * * *", () => sendReminder("morning"));
 
 cron.schedule("15 16 * * *", () => sendReminder("evening"));
 
