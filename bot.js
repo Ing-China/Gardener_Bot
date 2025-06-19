@@ -118,7 +118,7 @@ cron.schedule(
   "15 16 * * *",
   () => {
     console.log("⏰ Triggered morning cron:", moment().format());
-    sendReminder("morning");
+    sendReminder("evening");
   },
   {
     timezone: "Asia/Phnom_Penh",
