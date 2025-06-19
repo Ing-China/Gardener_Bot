@@ -104,7 +104,7 @@ ${members}
 // Schedule reminders
 // cron.schedule("46 8 * * *", () => sendReminder("morning"));
 cron.schedule(
-  "50 8 * * *",
+  "15 8 * * *",
   () => {
     console.log("⏰ Triggered morning cron:", moment().format());
     sendReminder("morning");
@@ -114,7 +114,18 @@ cron.schedule(
   }
 );
 
-cron.schedule("15 16 * * *", () => sendReminder("evening"));
+cron.schedule(
+  "15 16 * * *",
+  () => {
+    console.log("⏰ Triggered morning cron:", moment().format());
+    sendReminder("morning");
+  },
+  {
+    timezone: "Asia/Phnom_Penh",
+  }
+);
+
+// cron.schedule("15 16 * * *", () => sendReminder("evening"));
 
 // cron.schedule("46 10 * * *", () => sendReminder("morning"));
 
