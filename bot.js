@@ -129,6 +129,27 @@ cron.schedule(
 
 // cron.schedule("46 10 * * *", () => sendReminder("morning"));
 
+// Test reminder at 9:20 AM (today only - auto-destroys after first run)
+const today = moment().tz("Asia/Phnom_Penh").format("YYYY-MM-DD");
+let testSent = false;
+const testTask = cron.schedule(
+  "20 9 * * *",
+  () => {
+    const now = moment().tz("Asia/Phnom_Penh");
+    if (now.format("YYYY-MM-DD") === today && !testSent) {
+      console.log("⏰ Triggered test morning cron:", now.format());
+      sendReminder("morning");
+      testSent = true;
+      testTask.stop();
+      testTask.destroy();
+      console.log("🗑️ Test cron job destroyed after single use");
+    }
+  },
+  {
+    timezone: "Asia/Phnom_Penh",
+  }
+);
+
 console.log("🤖 Gardener Bot is running...");
 
 // Optional: Show chat ID when someone messages the bot
