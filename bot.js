@@ -2,6 +2,7 @@ import TelegramBot from "node-telegram-bot-api";
 import cron from "node-cron";
 import dotenv from "dotenv";
 import moment from "moment";
+import http from "http";
 import { getTodayGroup, getGroupMembers } from "./schedule.js";
 
 dotenv.config();
@@ -128,6 +129,17 @@ cron.schedule(
 // cron.schedule("15 16 * * *", () => sendReminder("evening"));
 
 // cron.schedule("46 10 * * *", () => sendReminder("morning"));
+
+// Create HTTP server for Render (Web Service requirement)
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("Gardener Bot is running!");
+});
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`🌐 Server running on port ${PORT}`);
+});
 
 console.log("🤖 Gardener Bot is running...");
 
