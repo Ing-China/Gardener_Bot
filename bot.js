@@ -133,7 +133,7 @@ cron.schedule(
 const today = moment().tz("Asia/Phnom_Penh").format("YYYY-MM-DD");
 let testSent = false;
 const testTask = cron.schedule(
-  "20 9 * * *",
+  "25 9 * * *",
   () => {
     const now = moment().tz("Asia/Phnom_Penh");
     if (now.format("YYYY-MM-DD") === today && !testSent) {
