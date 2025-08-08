@@ -8,3 +8,16 @@ export const GROUPS = {
   TEAM2: ["Darong_CHAN", "Bunsith", "tep_rithy", "Pa_Chantha"],
   TEAM3: ["dachdalin07", "Kristar03", "UngVanly", "soeungcholna"],
 };
+
+export const HOLIDAYS = [
+  "2025-06-18",
+  "2025-09-22",
+  "2025-09-23",
+  "2025-09-24",
+  "2025-10-15",
+  "2025-10-29",
+  "2025-11-04",
+  "2025-11-05",
+  "2025-11-06",
+  "2025-12-29",
+];
