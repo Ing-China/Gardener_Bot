@@ -30,8 +30,8 @@ A Telegram bot that sends automated garden care reminders using Render with cron
 
 In Render dashboard, set these environment variables:
 ```
-BOT_TOKEN=7695891707:AAFv4K6WtkjHeu9B3ZHlc9GBUPMz748pnYo
-TELEGRAM_CHAT_ID=-1002724251424
+BOT_TOKEN=
+TELEGRAM_CHAT_ID=
 ```
 
 ### 3. The cron jobs will be created automatically from `render.yaml`
