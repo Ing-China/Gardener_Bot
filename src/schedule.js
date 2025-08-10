@@ -4,8 +4,8 @@ export function getTodayGroup(date = new Date()) {
   const dateStr = formatDate(date);
   const dayOfWeek = date.getDay();
 
-  // Skip only Sundays (0) and holidays
-  if (dayOfWeek === 0 || HOLIDAYS.includes(dateStr)) {
+  // Skip only holidays (temporarily allow Sundays for testing)
+  if (HOLIDAYS.includes(dateStr)) {
     return null;
   }
 

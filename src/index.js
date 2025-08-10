@@ -6,11 +6,11 @@ export default {
     const url = new URL(request.url);
     
     // Handle different endpoints
-    if (url.pathname === "/morning" && request.method === "POST") {
+    if (url.pathname === "/morning" && (request.method === "POST" || request.method === "GET")) {
       return await sendReminder("morning", env);
     }
     
-    if (url.pathname === "/evening" && request.method === "POST") {
+    if (url.pathname === "/evening" && (request.method === "POST" || request.method === "GET")) {
       return await sendReminder("evening", env);
     }
     
@@ -21,23 +21,6 @@ export default {
     
     // Default response
     return new Response("Gardener Bot is running!", { status: 200 });
-  },
-
-  async scheduled(event, env, ctx) {
-    // Handle cron triggers
-    const now = new Date();
-    const hour = now.getHours();
-    const minute = now.getMinutes();
-    
-    // 8:15 AM Cambodia time (UTC+7, so 1:15 UTC)
-    if (hour === 1 && minute === 15) {
-      ctx.waitUntil(sendReminder("morning", env));
-    }
-    
-    // 4:15 PM Cambodia time (UTC+7, so 9:15 UTC) 
-    if (hour === 9 && minute === 15) {
-      ctx.waitUntil(sendReminder("evening", env));
-    }
   }
 };
 
@@ -55,7 +38,9 @@ async function sendReminder(type, env) {
       .map(username => `@${username}`)
       .join("\n");
 
-    const timeLabel = type === "morning" ? "🌞 Morning Reminder" : "🌇 Evening Check-in";
+    const timeLabel = type === "morning" ? "🌞 Morning Reminder" : 
+                     type === "evening" ? "🌇 Evening Check-in" : 
+                     "🧪 Test Reminder";
     const quote = getRandomQuote();
 
     const message = `${timeLabel}

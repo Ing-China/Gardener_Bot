@@ -1,0 +1,20 @@
+{
+  "name": "gardener_bot",
+  "version": "1.0.0",
+  "description": "A Telegram bot that sends automated garden care reminders using Cloudflare Workers and Cron Triggers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ing-China/Gardener_Bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ing-China/Gardener_Bot/issues"
+  },
+  "homepage": "https://github.com/Ing-China/Gardener_Bot#readme"
+}
