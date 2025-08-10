@@ -10,11 +10,11 @@ function getTodayGroup(date = new Date()) {
   }
 
   const index = getRotationIndex(date);
-  return ["TEAM3", "TEAM1", "TEAM2"][index % 3];
+  return ["TEAM2", "TEAM3", "TEAM1"][index % 3];
 }
 
 function getRotationIndex(date) {
-  const startDate = new Date("2025-08-08");
+  const startDate = new Date("2025-08-11"); // Tomorrow starts with TEAM2
   let count = 0;
 
   // Count working days from start date to current date
