@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: gardener-bot
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: BOT_TOKEN
+        value: "7695891707:AAFv4K6WtkjHeu9B3ZHlc9GBUPMz748pnYo"
+      - key: TELEGRAM_CHAT_ID  
+        value: "-1002724251424"
+        
+  - type: cron
+    name: gardener-morning-cron
+    env: node
+    schedule: "15 1 * * 1-6"  # 8:15 AM Cambodia (1:15 AM UTC) Mon-Sat
+    buildCommand: npm install
+    startCommand: curl -s https://gardener-bot.onrender.com/cron/morning
+    plan: free
+    
+  - type: cron
+    name: gardener-evening-cron  
+    env: node
+    schedule: "15 9 * * 1-6"  # 4:15 PM Cambodia (9:15 AM UTC) Mon-Sat
+    buildCommand: npm install
+    startCommand: curl -s https://gardener-bot.onrender.com/cron/evening
+    plan: free

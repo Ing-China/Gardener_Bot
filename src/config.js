@@ -1,15 +1,16 @@
-export const GROUPS = {
+const GROUPS = {
   TEAM1: [
     "sambath_sopha",
     "ingchina",
     "rann_dxrn",
-    "ThonSotheavann,SREYPOVTHOEUN",
+    "ThonSotheavann",
+    "SREYPOVTHOEUN",
   ],
   TEAM2: ["Darong_CHAN", "Bunsith", "tep_rithy", "Pa_Chantha"],
   TEAM3: ["dachdalin07", "Kristar03", "UngVanly", "soeungcholna"],
 };
 
-export const HOLIDAYS = [
+const HOLIDAYS = [
   "2025-06-18",
   "2025-09-22",
   "2025-09-23",
@@ -21,3 +22,8 @@ export const HOLIDAYS = [
   "2025-11-06",
   "2025-12-29",
 ];
+
+module.exports = {
+  GROUPS,
+  HOLIDAYS
+};

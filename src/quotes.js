@@ -1,4 +1,4 @@
-export const NATURE_QUOTES = [
+const NATURE_QUOTES = [
   // English Nature Quotes
   "Nature does not hurry, yet everything is accomplished. – Lao Tzu",
   "The earth has music for those who listen. – Shakespeare",
@@ -28,6 +28,10 @@ export const NATURE_QUOTES = [
   "«ដាំដើមគឺជាការបង្កើតអនាគត» – អនាមិក",
 ];
 
-export function getRandomQuote() {
+function getRandomQuote() {
   return NATURE_QUOTES[Math.floor(Math.random() * NATURE_QUOTES.length)];
 }
+
+module.exports = {
+  getRandomQuote
+};

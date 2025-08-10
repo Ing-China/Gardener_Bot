@@ -1,6 +1,6 @@
-import { GROUPS, HOLIDAYS } from "./config.js";
+const { GROUPS, HOLIDAYS } = require("./config.js");
 
-export function getTodayGroup(date = new Date()) {
+function getTodayGroup(date = new Date()) {
   const dateStr = formatDate(date);
   const dayOfWeek = date.getDay();
 
@@ -34,10 +34,15 @@ function getRotationIndex(date) {
   return count - 1;
 }
 
-export function getGroupMembers(groupKey) {
+function getGroupMembers(groupKey) {
   return GROUPS[groupKey] || [];
 }
 
 function formatDate(date) {
   return date.toISOString().split("T")[0];
 }
+
+module.exports = {
+  getTodayGroup,
+  getGroupMembers
+};

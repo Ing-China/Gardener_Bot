@@ -1,90 +1,97 @@
-# Gardener Bot - Cloudflare Workers
+# 🌿 Gardener Bot - Render Edition
 
-A Telegram bot that sends automated garden care reminders using Cloudflare Workers and Cron Triggers.
+A Telegram bot that sends automated garden care reminders using Render with cron jobs.
 
-## Features
+## 🚀 Features
 
-- 🌞 Morning reminders at 8:15 AM Cambodia time
-- 🌇 Evening check-ins at 4:15 PM Cambodia time
-- 🔄 Automatic team rotation between 3 teams
-- 📅 Skips Sundays and holidays
-- 🌿 Random Khmer nature quotes
-- ☁️ Runs completely free on Cloudflare Workers
+- **Morning reminders** at 8:15 AM Cambodia time (Monday-Saturday)
+- **Evening check-ins** at 4:15 PM Cambodia time (Monday-Saturday)  
+- **Team rotation** system with 3 teams
+- **Holiday support** - no reminders on holidays or Sundays
+- **Beautiful nature quotes** in English and Khmer
 
-## Setup
+## 🏗️ Architecture
 
-1. **Install Wrangler CLI:**
+- **Web Service**: Express.js server hosted on Render
+- **Cron Jobs**: Render cron services trigger the reminders
+- **Telegram API**: Sends messages to the designated group
 
-   ```bash
-   npm install -g wrangler
-   ```
+## 🔧 Setup on Render
 
-2. **Install dependencies:**
+### 1. Deploy to Render
 
-   ```bash
-   npm install
-   ```
+1. Push this code to GitHub
+2. Go to [Render Dashboard](https://dashboard.render.com)
+3. Click "New" → "Web Service"  
+4. Connect your GitHub repository
+5. Render will auto-detect the `render.yaml` configuration
 
-3. **Login to Cloudflare:**
+### 2. Environment Variables
 
-   ```bash
-   wrangler login
-   ```
+In Render dashboard, set these environment variables:
+```
+BOT_TOKEN=7695891707:AAFv4K6WtkjHeu9B3ZHlc9GBUPMz748pnYo
+TELEGRAM_CHAT_ID=-1002724251424
+```
 
-4. **Set environment variables:**
+### 3. The cron jobs will be created automatically from `render.yaml`
 
-   ```bash
-   wrangler secret put BOT_TOKEN
-   wrangler secret put TELEGRAM_CHAT_ID
-   ```
+## 📝 API Endpoints
 
-5. **Deploy to Cloudflare:**
-   ```bash
-   npm run deploy
-   ```
+- `GET /` - Health check
+- `GET /morning` - Trigger morning reminder manually
+- `GET /evening` - Trigger evening reminder manually  
+- `GET /test` - Send test reminder
+- `GET /debug` - Debug information
+- `GET /cron/morning` - Morning cron endpoint (called by Render)
+- `GET /cron/evening` - Evening cron endpoint (called by Render)
 
-## Environment Variables
+## ⏰ Schedule
 
-- `BOT_TOKEN`: Your Telegram bot token from @BotFather
-- `TELEGRAM_CHAT_ID`: The chat ID where reminders will be sent
+- **Morning**: 8:15 AM Cambodia Time (1:15 AM UTC) - Mon-Sat
+- **Evening**: 4:15 PM Cambodia Time (9:15 AM UTC) - Mon-Sat
+- **Days**: Monday to Saturday (no reminders on Sundays or holidays)
 
-## Cron Schedule
-
-The bot runs on these cron triggers:
-
-- `15 8 * * *` - Morning reminders (8:15 AM Cambodia time)
-- `15 16 * * *` - Evening reminders (4:15 PM Cambodia time)
-
-## Team Rotation
+## 👥 Team Configuration
 
 Teams rotate daily starting from 2025-08-08:
-
-- **TEAM1**: sambath_sopha, ingchina, rann_dxrn, ThonSotheavann,SREYPOVTHOEUN
-- **TEAM2**: Darong_CHAN, Bunsith, tep_rithy, Pa_Chantha
+- **TEAM1**: sambath_sopha, ingchina, rann_dxrn, ThonSotheavann, SREYPOVTHOEUN
+- **TEAM2**: Darong_CHAN, Bunsith, tep_rithy, Pa_Chantha  
 - **TEAM3**: dachdalin07, Kristar03, UngVanly, soeungcholna
 
-## Development
+Edit `src/config.js` to modify teams or holidays.
 
-Run locally:
+## 🎯 Testing
+
+1. Visit your Render URL: `https://your-app.onrender.com`
+2. Test endpoints: `/morning`, `/evening`, `/test`
+3. Check `/debug` for configuration status
+
+## 💰 Cost
+
+- **Render Web Service**: Free tier (750 hours/month)
+- **Render Cron Jobs**: Free tier  
+- **Total**: Completely FREE! 🎉
+
+## 🔧 Local Development
 
 ```bash
+npm install
 npm run dev
 ```
 
-Test cron triggers manually:
+Server runs on http://localhost:3000
 
-```bash
-# Morning reminder
-curl -X POST https://your-worker.workers.dev/morning
+## 📊 Monitoring
 
-# Evening reminder
-curl -X POST https://your-worker.workers.dev/evening
-```
+Check Render dashboard for:
+- Web service logs
+- Cron job execution history  
+- Performance metrics
 
-## Cost
+## 🆚 Why Render vs Cloudflare?
 
-This bot runs **completely free** on Cloudflare Workers:
-
-- ✅ 100,000 requests/day (free tier)
-- ✅ Unlimited cron triggers
-- ✅ No server maintenance required
+- ✅ **Free cron jobs** (Cloudflare requires paid plan)
+- ✅ **Easy setup** with render.yaml
+- ✅ **Built-in monitoring** 
+- ✅ **No billing required**
